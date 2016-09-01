@@ -1,0 +1,116 @@
+﻿@model ReportApplication.Models.ViewModel.DynamicReportHeaderViewModel
+
+@{
+    ViewBag.Title = "CustomerdDetail";
+}
+
+<h2>CustomerdDetail</h2>
+
+
+<section class="section">
+    @using (Html.BeginForm("CustomerdDetailByCity", "Report", FormMethod.Get, new { @class = "submit-allow ignore-validation" }))
+    {
+
+        <div>
+            @Html.LabelFor(x => x.FromDate)
+            @Html.TextBoxFor(x => x.FromDate, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.ToDate)
+            @Html.TextBoxFor(x => x.ToDate, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.City)
+            @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+            <br />
+            <div>
+                <input type="button" value="Report" id="reportPdf" />
+            </div>
+
+        </div>
+
+    }
+
+</section>
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+
+
+        $('#reportPdf').click(function(e) {
+            var form = $(this).parents('form:first');
+            window.open(form.attr('action') + '?' + form.serialize());
+            e.preventDefault();
+            //if (jQuery.validator && jQuery.validator.unobtrusive) {
+            //    form.validate();
+            //    if (!form.valid()) {
+            //        return false;
+            //    } else {
+            //        window.open(form.attr('action') + '?' + form.serialize());
+            //        e.preventDefault();
+            //    }
+            //}
+           
+           
+        });
+
+
+        //$('#reportPdf').click(function (e) {
+        //    var $form = $(this).parents('form:first');
+
+        //    if (jQuery.validator && jQuery.validator.unobtrusive) {
+        //        $form.validate();
+        //        if (!$form.valid()) {
+        //            return false;
+        //        } else {
+        //            window.open($form.attr('action') + '?' + $form.serialize());
+        //            e.preventDefault();
+        //        }
+        //    }
+        //}
+        //);
+        //$(function() {
+
+        //    $('#reportPdf').unbind('click').bind('click', function() {
+        //        var form = $(this).parents('form:first');
+
+        //        var option = {
+        //            url: "/Report/CustomerdDetailByCity",
+        //            type: "POST",
+        //            data: form.serialize(),
+        //            dataType: "html"
+
+        //        };
+        //        $.ajax(option).done(function(resp) {
+        //            alert('successfully');
+        //        });
+        //    });
+
+        //});
+
+
+        //$(function() {
+
+        //    $('#reportPdf').unbind('click').bind('click', function(e) {
+        //        var form = $(this).parents('form:first');
+        //        var url = form.attr('action');
+        //        if (jQuery.validator && jQuery.validator.unobtrusive) {
+        //            form.validate();
+        //            if (!form.valid()) {
+        //                return false;
+        //            } else {
+        //                window.open(url + '?' + form.serialize());
+        //                e.preventDefault();
+        //            }
+        //        }
+        //    });
+
+
+        //});
+
+
+    </script>
+
+
+}
